@@ -12,7 +12,7 @@ export class AuthService {
     constructor(private http: HttpClient) { }
 
     login(loginModel: LoginModel) {
-        return this.http.post<any>('/api/account/login', loginModel)
+        return this.http.post<any>('/api/account/login', loginModel, { responseType: 'text' as 'json' })
             .do(res => this.setSession(res))
             .shareReplay();
     }
@@ -22,7 +22,7 @@ export class AuthService {
         const expiresAt = moment('1970-01-01').add(jwtToken.exp, 'second');
 
         localStorage.setItem('token', tokenString);
-        localStorage.setItem('user', jwtToken.unique_name);
+        localStorage.setItem('user', jwtToken.user);
         localStorage.setItem('expires', JSON.stringify(expiresAt.valueOf()));
     }
 

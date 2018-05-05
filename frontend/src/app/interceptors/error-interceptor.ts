@@ -19,7 +19,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                     let customeError = res.error as ErrorResponse;
                     this.dialogService.error(customeError.error.message, 'Error')
                 }
-                else if (typeof res.error === 'string') {
+                else if (typeof res.message === 'string') {
                     this.dialogService.error(res.message, 'Error')
                 }
                 else if (res.status === 0) {
