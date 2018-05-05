@@ -1,0 +1,7 @@
+<div [ngBusy]="busy">
+  <p>
+    user-detail works!
+  </p>
+  <h2 *ngIf="user">Username: {{ user.name }}</h2>
+  <button (click)="goBack()">Go back</button>
+</div>
