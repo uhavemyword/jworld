@@ -25,6 +25,14 @@ public class UserController {
         return this.userService.getById(id);
     }
 
+    @PutMapping("/{id}")
+    public void update(@PathVariable("id") Integer id, @RequestBody User user) {
+        User u = this.userService.getById(id);
+        u.setName(user.getName());
+        u.setEmail(user.getEmail());
+        this.userService.update(u);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") Integer id) {
         this.userService.deleteById(id);
