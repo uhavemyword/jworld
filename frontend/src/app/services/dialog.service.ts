@@ -14,35 +14,47 @@ export class DialogService {
 
     constructor(private modalService: BsModalService) { }
 
-    success(message: string, title?: string) {
+    success(message: string, title?: string, onClose?: Function) {
         this.show(new DialogModel(
             message,
             title,
             [{
                 text: 'Close',
-                action: () => { this.bsModalRef.hide(); }
+                action: () => {
+                    if (onClose)
+                        onClose();
+                    this.bsModalRef.hide();
+                }
             }]
         ), 'success');
     }
 
-    error(message: string, title?: string) {
+    error(message: string, title?: string, onClose?: Function) {
         this.show(new DialogModel(
             message,
             title,
             [{
                 text: 'Close',
-                action: () => { this.bsModalRef.hide(); }
+                action: () => {
+                    if (onClose)
+                        onClose();
+                    this.bsModalRef.hide();
+                }
             }]
         ), 'danger');
     }
 
-    info(message: string, title?: string) {
+    info(message: string, title?: string, onClose?: Function) {
         this.show(new DialogModel(
             message,
             title,
             [{
                 text: 'Close',
-                action: () => { this.bsModalRef.hide(); }
+                action: () => {
+                    if (onClose)
+                        onClose();
+                    this.bsModalRef.hide();
+                }
             }]
         ), 'info');
     }
