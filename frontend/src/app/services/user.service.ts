@@ -9,7 +9,7 @@ export class UserService extends EntityService<UserModel> {
 
   constructor(protected http: HttpClient) {
     super(http);
-    this.baseUrl = '/api/admin/users/';
+    this.baseUrl = '/api/users/';
   }
   
 }

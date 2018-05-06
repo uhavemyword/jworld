@@ -5,4 +5,5 @@ export class UserModel extends EntityModel {
     username: string;
     name: string;
     role: string;
+    email: string;
 }

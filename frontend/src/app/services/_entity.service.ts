@@ -7,7 +7,7 @@ import { EntityModel } from '../models/_entity.model';
 
 @Injectable()
 export class EntityService<T extends EntityModel> {
-  protected baseUrl = '/api/admin/*/';
+  protected baseUrl = '/api/*/';
 
   constructor(protected http: HttpClient) { }
 

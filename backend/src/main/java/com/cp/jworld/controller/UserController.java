@@ -9,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/rest/users")
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/all")
+    @GetMapping("/")
     public List<User> getAll() {
         return this.userService.getAll();
     }
@@ -25,8 +25,13 @@ public class UserController {
         return this.userService.getById(id);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable("id") Integer id) {
+        this.userService.deleteById(id);
+    }
+
     @GetMapping("/insert")
-    public User insert(@RequestParam("name") String name, @RequestParam(name = "email", required = false) String email) {
+    public User testInsert(@RequestParam("name") String name, @RequestParam(name = "email", required = false) String email) {
         User user = new User();
         user.setName(name);
         user.setEmail(email);
@@ -35,7 +40,7 @@ public class UserController {
     }
 
     @GetMapping("/update/{id}")
-    public User update(@PathVariable("id") Integer id) {
+    public User testUpdate(@PathVariable("id") Integer id) {
         User user = userService.getById(id);
 
         // switch name and email
@@ -47,7 +52,7 @@ public class UserController {
     }
 
     @GetMapping("/delete/{id}")
-    public List<User> delete(@PathVariable("id") Integer id) {
+    public List<User> testDelete(@PathVariable("id") Integer id) {
         userService.deleteById(id);
         return getAll();
     }

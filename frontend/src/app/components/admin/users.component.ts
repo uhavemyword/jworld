@@ -19,10 +19,14 @@ export class UsersComponent implements OnInit {
     private dialogService: DialogService) { }
 
   ngOnInit() {
+    this.refresh();
+  }
+
+  refresh(){
     this.busy = this.userService.getAll().subscribe(u => this.users = u);
   }
-  
-  create(){
+
+  create() {
     //FIXME:
   }
 
@@ -32,11 +36,11 @@ export class UsersComponent implements OnInit {
 
   delete(id: number) {
     this.dialogService.confirm(
-      `Are you sure you want to delete user ${ id }?`,
+      `Are you sure you want to delete user ${id}?`,
       'Confirm',
       () => {
         this.userService.delete(id).subscribe(res => {
-          this.users = this.users.filter(u => u.id != id)
+          this.refresh();
         });
       }
     );

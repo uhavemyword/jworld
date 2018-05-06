@@ -1,25 +1,28 @@
 <div [ngBusy]="busy">
-  <button type="button" class="btn btn-success" (click)="create()">
-    <i class="fa fa-plus"></i>&nbsp; Create</button>
   <table class="table">
     <thead>
       <tr>
         <th>Id</th>
-        <th>Username</th>
         <th>Name</th>
-        <th></th>
+        <th>Email</th>
+        <th>
+          <button type="button" class="btn btn-success" (click)="create()">
+            <i class="fa fa-plus"></i>&nbsp; Create</button>
+        </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let user of users">
         <td>{{ user.id }}</td>
-        <td>{{ user.username}}</td>
         <td>{{ user.name}}</td>
+        <td>{{ user.email}}</td>
         <td>
-            <button type="button" class="btn btn-warning" (click)="edit(user.id)">
-              <i class="fa fa-bars"></i>&nbsp; Details</button>
-          <button type="button" class="btn btn-danger" (click)="delete(user.id)">
-            <i class="fa fa-times"></i>&nbsp; Delete</button>
+          <button type="button" class="btn btn-warning" (click)="edit(user.id)" title="Details">
+            <i class="fa fa-bars"></i>
+          </button>
+          <button type="button" class="btn btn-danger" (click)="delete(user.id)" title="Delete">
+            <i class="fa fa-times"></i>
+          </button>
         </td>
       </tr>
     </tbody>

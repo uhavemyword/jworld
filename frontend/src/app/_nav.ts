@@ -8,23 +8,23 @@ export const Navigation = [
       text: 'NEW'
     }
   },
-  {
-    name: 'Admin',
-    url: '/admin',
-    icon: 'icon-settings',
-    children: [
+  // {
+  //   name: 'Admin',
+  //   url: '/admin',
+  //   icon: 'icon-settings',
+  //   children: [
       {
         name: 'Users',
         url: '/admin/users',
         icon: 'icon-user'
       },
-      {
-        name: 'Roles',
-        url: '/admin/roles',
-        icon: 'icon-people'
-      },
-    ]
-  },
+  //     {
+  //       name: 'Roles',
+  //       url: '/admin/roles',
+  //       icon: 'icon-people'
+  //     },
+  //   ]
+  // },
   {
     name: 'Login',
     url: '/account/login',
