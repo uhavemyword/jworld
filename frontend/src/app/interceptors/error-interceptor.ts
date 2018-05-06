@@ -15,16 +15,17 @@ export class ErrorInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req).catch(res => {
             if (res instanceof HttpErrorResponse) {
-                if (ErrorResponse.match(res.error)) {
-                    let customeError = res.error as ErrorResponse;
-                    this.dialogService.error(customeError.error.message, 'Error')
-                }
-                else if (typeof res.message === 'string') {
-                    this.dialogService.error(res.message, 'Error')
-                }
-                else if (res.status === 0) {
-                    // might be CORS error
-                    this.dialogService.error('There was a problem with the request.');
+                try {
+                    let error = JSON.parse(res.error);
+                    this.dialogService.error(error.message, 'Error')
+                } catch {
+                    if (typeof res.message === 'string') {
+                        this.dialogService.error(res.message, 'Error')
+                    }
+                    else if (res.status === 0) {
+                        // might be CORS error
+                        this.dialogService.error('There was a problem with the request.');
+                    }
                 }
             }
             return Observable.throw(res);
