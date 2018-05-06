@@ -1,2 +1,4 @@
 # jworld
-spring boot mybatis
+spring boot 
+mybatis 
+angular
