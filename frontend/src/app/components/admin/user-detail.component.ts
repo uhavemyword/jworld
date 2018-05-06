@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
 import 'rxjs/add/operator/switchMap';
 
-import { UserService } from '../../services';
+import { UserService, DialogService } from '../../services';
 import { UserModel } from 'app/models';
 
 @Component({
@@ -14,19 +14,35 @@ import { UserModel } from 'app/models';
 export class UserDetailComponent implements OnInit {
 
   busy: Subscription;
-  user: UserModel;
+  model: UserModel;
 
   constructor(
     private userService: UserService,
-    private route: ActivatedRoute,
-    private location: Location
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private location: Location,
+    private dialogService: DialogService
   ) { }
 
   ngOnInit(): void {
-    this.route.paramMap
+    this.activatedRoute.paramMap
       .switchMap((params: ParamMap) => this.userService.getById(+params.get('id')))
       .subscribe(u => {
-        this.user = u;
+        this.model = u;
+      });
+  }
+
+  update() {
+    this.userService
+      .update(this.model)
+      .subscribe(() => {
+        this.dialogService.success(
+          'User has been updated.',
+          'Success',
+          () => {
+            this.router.navigate(['/admin/users/']);
+          }
+        );
       });
   }
 
