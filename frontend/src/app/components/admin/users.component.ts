@@ -22,12 +22,12 @@ export class UsersComponent implements OnInit {
     this.refresh();
   }
 
-  refresh(){
+  refresh() {
     this.busy = this.userService.getAll().subscribe(u => this.users = u);
   }
 
   create() {
-    //FIXME:
+    this.router.navigate([0], { relativeTo: this.activatedRoute });
   }
 
   edit(id: number) {

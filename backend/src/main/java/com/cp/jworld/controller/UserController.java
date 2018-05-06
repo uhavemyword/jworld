@@ -25,6 +25,11 @@ public class UserController {
         return this.userService.getById(id);
     }
 
+    @PostMapping("/")
+    public void insert(@RequestBody User user) {
+        this.userService.insert(user);
+    }
+
     @PutMapping("/{id}")
     public void update(@PathVariable("id") Integer id, @RequestBody User user) {
         User u = this.userService.getById(id);

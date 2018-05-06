@@ -26,9 +26,36 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.paramMap
-      .switchMap((params: ParamMap) => this.userService.getById(+params.get('id')))
-      .subscribe(u => {
-        this.model = u;
+      .subscribe((params: ParamMap) => {
+        let id: number = +params.get('id');
+        if (id == 0) {
+          this.model = new UserModel();
+        }
+        else {
+          this.userService.getById(+params.get('id'))
+            .subscribe(u => {
+              this.model = u;
+            });
+        }
+        return null;
+      });
+  }
+
+  onSubmit() {
+    this.model.id > 0 ? this.update() : this.create();
+  }
+
+  create() {
+    this.userService
+      .create(this.model)
+      .subscribe(() => {
+        this.dialogService.success(
+          'User has been created.',
+          'Success',
+          () => {
+            this.router.navigate(['/admin/users/']);
+          }
+        );
       });
   }
 
