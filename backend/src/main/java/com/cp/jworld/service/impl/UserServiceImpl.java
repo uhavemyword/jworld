@@ -27,4 +27,11 @@ public class UserServiceImpl extends EntityServiceImpl<User, UserDao> implements
         contact.setUser(user);
         contactDao.insert(contact);
     }
+    
+    @Override
+    @Transactional
+    public void deleteById(Integer id) {
+        contactDao.deleteByUserId(id);
+        userDao.deleteById(id);
+    }
 }

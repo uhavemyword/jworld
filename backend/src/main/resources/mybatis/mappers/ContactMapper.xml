@@ -46,4 +46,8 @@
         delete from contact where id = #{id}
     </delete>
 
+    <delete id="deleteByUserId">
+        delete from contact where user_id = #{id}
+    </delete>
+
 </mapper>
