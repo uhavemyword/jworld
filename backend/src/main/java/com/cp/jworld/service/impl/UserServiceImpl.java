@@ -18,7 +18,7 @@ public class UserServiceImpl extends EntityServiceImpl<User, UserDao> implements
     private ContactDao contactDao;
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void insert(User user) {
         userDao.insert(user);
         Contact contact = new Contact();
@@ -29,7 +29,7 @@ public class UserServiceImpl extends EntityServiceImpl<User, UserDao> implements
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void deleteById(Integer id) {
         contactDao.deleteByUserId(id);
         userDao.deleteById(id);

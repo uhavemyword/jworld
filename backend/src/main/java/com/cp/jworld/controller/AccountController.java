@@ -17,8 +17,8 @@ public class AccountController {
 
     @PostMapping("/login")
     public String login(@RequestBody LoginModel loginModel) {
-        if (loginModel.getUsername().equals("a") && loginModel.getPassword().equals("a")) {
-            return JwtTokenHelper.Create(loginModel.getUsername(), new String[]{"rolea", "roleb"});
+        if ("a".equals(loginModel.getUsername()) && "a".equals(loginModel.getPassword())) {
+            return JwtTokenHelper.create(loginModel.getUsername(), new String[]{"rolea", "roleb"});
         }
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Username or password is incorrect!");
     }

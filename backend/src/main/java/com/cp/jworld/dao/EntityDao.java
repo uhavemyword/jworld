@@ -2,9 +2,9 @@ package com.cp.jworld.dao;
 
 import java.util.List;
 
-import com.cp.jworld.model.Entity;
+import com.cp.jworld.model.BaseEntity;
 
-public interface EntityDao<E extends Entity> {
+public interface EntityDao<E extends BaseEntity> {
     List<E> getAll();
 
     E getById(Integer id);

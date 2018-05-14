@@ -1,13 +1,13 @@
 package com.cp.jworld.model;
 
-public abstract class Entity {
-	private Integer Id;
+public abstract class BaseEntity {
+	private Integer id;
 
 	public Integer getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Integer id) {
-		Id = id;
+		this.id = id;
 	}
 }

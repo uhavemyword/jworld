@@ -1,6 +1,6 @@
 package com.cp.jworld.model;
 
-public class Favorite extends Entity {
+public class Favorite extends BaseEntity {
 
 	private String name;
 

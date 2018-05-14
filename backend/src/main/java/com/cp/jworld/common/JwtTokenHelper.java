@@ -17,7 +17,7 @@ import java.util.Date;
 public class JwtTokenHelper {
     private static final String SECRET = "This is my secret key key key!!!";
 
-    public static String Create(String username, String[] roles) {
+    public static String create(String username, String[] roles) {
         String token = "";
         try {
             Algorithm algorithm = Algorithm.HMAC256(SECRET);
@@ -35,7 +35,7 @@ public class JwtTokenHelper {
         return token;
     }
 
-    public static String Validate(String token) {
+    public static String validate(String token) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(SECRET);
             JWTVerifier verifier = JWT.require(algorithm)

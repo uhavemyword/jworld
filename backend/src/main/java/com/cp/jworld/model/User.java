@@ -3,7 +3,7 @@ package com.cp.jworld.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User extends Entity {
+public class User extends BaseEntity {
 
     private String name;
 

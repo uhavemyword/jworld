@@ -1,6 +1,6 @@
 package com.cp.jworld.model;
 
-public class Contact extends Entity {
+public class Contact extends BaseEntity {
 
     private String phone;
 
